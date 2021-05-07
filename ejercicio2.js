@@ -45,3 +45,5 @@ const f6 = (arrayE, func) => {
         return -1
     }
   }
+
+  test_ejercicio2(f1, f2, f3, f4, f5, f6);

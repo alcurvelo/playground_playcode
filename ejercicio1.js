@@ -24,7 +24,7 @@ const rotaciones = (arrayE, n) => {
     }
     return arrayE
 }
-const masetaMasLarga=(arrayE)=>{
+const mesetaMasLarga=(arrayE)=>{
     if(arrayE.length>0){
         //Filtro para saber cuales son los elementos
         const arrayElementsFiltered=arrayE.filter((element,i)=>arrayE.indexOf(element)===i)
@@ -44,8 +44,4 @@ const masetaMasLarga=(arrayE)=>{
         return 0
     }
 }
-
-console.log(suma(array1))
-console.log(reverse(array1))
-console.log(rotaciones(array2,3))
-console.log(masetaMasLarga(array3))
+test_ejercicio1(suma, reverse, mesetaMasLarga, rotaciones)

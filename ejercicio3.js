@@ -1,144 +1,4 @@
-const test_ejercicio3 = function (
-    maximo,
-    multiplicar,
-    degrade,
-    esDamero,
-    esDameroRegular
-  ) {
-    console.log("\nTESTS MAXIMO:");
-    test_maximo(maximo);
-    console.log("\nTESTS MULTIPLICAR MATRICES:");
-    test_multiplicar(multiplicar);
-    console.log("\nTESTS ES DEGRADE:");
-    test_esDegrade(degrade);
-    console.log("\nTESTS ES DAMERO:");
-    test_esDamero(esDamero);
-    console.log("\nTESTS ES DAMERO REGULAR:");
-    test_esDameroRegular(esDameroRegular);
-  }
-const multipleTestFunction = function (func, inputs, results) {
-    for (let i = 0; i < results.length; i++) {
-      console.log(`TEST [${i + 1}/${inputs.length}]:`);
-      testFunction(func, inputs[i], results[i]);
-    }
-  };
-  const testFunction = function (func, inputs, check) {
-    const result = func.apply(this, inputs);
-    const s_result = JSON.stringify(result);
-    const s_check = JSON.stringify(check);
-    const message =
-      s_result === s_check
-        ? "PASS"
-        : `FAIL | Expected ${s_check} got ${s_result}`;
-    console.log(message);
-  };
-const test_maximo = function (maximo) {
-    const m1 = [[]];
-    const m2 = [[2, 3, 4, 5]];
-    const m3 = [
-      [-1, 2, 3],
-      [4, -5, 7],
-      [8, 2, 1],
-    ];
-    multipleTestFunction(maximo, [[m1], [m2], [m3]], [-1, 5, 8]);
-  };
-  
-  const test_multiplicar = function (multiplicar) {
-    const m1 = [[2, 3]];
-    const m2 = [[2], [4]];
-    const r1 = [[16]];
-    const m3 = [[1, 3, 2]];
-    const m4 = [
-      [1, 0],
-      [2, 4],
-      [5, 1],
-    ];
-    const r2 = [[17, 14]];
-    const m5 = [
-      [2, 5, 1],
-      [4, 3, 1],
-    ];
-    const m6 = [
-      [1, 0, 0],
-      [0, 2, 0],
-      [2, 3, 1],
-    ];
-    const r3 = [
-      [4, 13, 1],
-      [6, 9, 1],
-    ];
-    multipleTestFunction(
-      multiplicar,
-      [
-        [m1, m2],
-        [m3, m4],
-        [m5, m6],
-      ],
-      [r1, r2, r3]
-    );
-  };
-  
-  const test_esDegrade = function (degrade) {
-    const m1 = [[]]; // true
-    const m2 = [[1, 2, 3]]; // true
-    const m3 = [[1], [2], [3]]; // true
-    const m4 = [[5, 3, 2]]; // false
-    const m5 = [[5], [3], [2]]; // false
-    const m6 = [
-      [4, 6, 25],
-      [3, 4, 6],
-      [8, 3, 4],
-    ]; // false
-    const m7 = [
-      [99, 8, 7],
-      [8, 7, 3],
-      [7, 3, 1],
-    ]; // false
-    const m8 = [
-      [4, 6, 25],
-      [3, 4, 6],
-      [2, 3, 4],
-    ]; // true
-    multipleTestFunction(
-      degrade,
-      [[m1], [m2], [m3], [m4], [m5], [m6], [m7], [m8]],
-      [true, true, true, false, false, false, false, true]
-    );
-  };
-  
-  const test_esDamero = function (esDamero) {
-    const m1 = [[]]; // false
-    const m2 = [[1, 0, 1, 0]]; // true
-    const m3 = [
-      [1, 0, 1, 0],
-      [1, 0, 1, 0],
-    ]; // false
-    const m4 = [
-      [0, 1, 0, 1],
-      [1, 0, 1, 0],
-      [0, 1, 0, 1],
-    ]; // true
-    multipleTestFunction(
-      esDamero,
-      [[m1], [m2], [m3], [m4]],
-      [false, true, false, true]
-    );
-  };
-  
-  const test_esDameroRegular = function (esDameroRegular) {
-    const m1 = [
-      [1, 0, 1, 0],
-      [1, 0, 1, 0],
-    ]; // false
-    const m2 = [
-      [1, 0, 1],
-      [0, 1, 0],
-      [1, 0, 1],
-    ]; // true
-    multipleTestFunction(esDameroRegular, [[m1], [m2]], [false, true]);
-  };
-
-  const metodoDeLaBurbujaMayorMenor=(array)=>{
+const metodoDeLaBurbujaMayorMenor=(array)=>{
     for(let i=0;i<array.length;i++){
         for(let j=0;j<array.length-i-1;j++){
             if(array[j]<array[j+1]){
@@ -290,8 +150,12 @@ const comprobarIteracionTablero=(M)=>{
             return true
           }else{
             if(aux!==M[i+1][0]){
-              console.log("regular")
-              return false
+              //¿Es regular?
+              if(M.length===M[0].length){
+                aux=M[i+1][0]
+              }else{
+                return false
+              }
             }else{
               aux=M[i+1][0]
             }
@@ -322,7 +186,6 @@ const esDamero = (M) => {
 }
 
 const esDameroRegular = (M) => {
-  console.log(M)
   if(M.length===M[0].length){
     if(esDamero(M)){
       return true
@@ -334,4 +197,4 @@ const esDameroRegular = (M) => {
   }
 }
 
-test_esDameroRegular(esDameroRegular);
+test_ejercicio3(maximo, multiplicarMatrices, esDegrade, esDamero, esDameroRegular);
