@@ -1,0 +1,67 @@
+{
+    "facturas":[
+        {
+            "numero":"51451sdf4ds5f1dsfds4145150001",
+            "montoTotal":350,
+            "fechaEmision":"2021-03-07",
+            "fechaVencimiento":"2021-03-23",
+            "conceptos":[
+                {
+                    "titulo":"Cargo Fijo",
+                    "monto":200
+                },
+                {
+                    "titulo":"Consumo",
+                    "monto":100 
+                },
+                {
+                    "titulo":"Impuesto Ley 25.413",
+                    "monto":50
+                }
+            ]
+        },
+        {
+            "numero":"51451sdf4ds5f1dsfds4145150002",
+            "montoTotal":400,
+            "fechaEmision":"2021-04-07",
+            "fechaVencimiento":"2021-04-23",
+            "conceptos":[
+                {
+                    "titulo":"Cargo Fijo",
+                    "monto":200
+                },
+                {
+                    "titulo":"Consumo",
+                    "monto":150 
+                },
+                {
+                    "titulo":"Impuesto Ley 25.413",
+                    "monto":50
+                }
+            ]
+        },
+        {
+            "numero":"51451sdf4ds5f1dsfds4145150003",
+            "montoTotal":500,
+            "fechaEmision":"2021-05-07",
+            "fechaVencimiento":"2021-05-23",
+            "conceptos":[
+                {
+                    "titulo":"Cargo Fijo",
+                    "monto":200
+                },
+                {
+                    "titulo":"Consumo",
+                    "monto":250 
+                },
+                {
+                    "titulo":"Impuesto Ley 25.413",
+                    "monto":50
+                }
+            ]
+        }
+    ],
+    "numeroCliente":"1115515100",
+    "titularSuministro":"Juanito Peréz",
+    "direccion":"Parral 34 003 NUM-/42"
+}
