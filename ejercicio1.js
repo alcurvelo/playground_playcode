@@ -1,5 +1,4 @@
 const suma=(arrayE)=>{
-    console.log(arrayE)
     if(arrayE.length>0){
         var suma=0
         for(let i=0;i<arrayE.length;i++){
@@ -12,7 +11,7 @@ const suma=(arrayE)=>{
 }
 const reverse=(arrayE)=>{
     newArrayReversed=[]
-    for(let i=arrayE.length-1;i==0;i--){
+    for(let i=arrayE.length-1;i>=0;i--){
         newArrayReversed.push(arrayE[i])
     }
     return newArrayReversed
