@@ -1,16 +1,21 @@
-var array1=[1,2,3,4,5]
-var array2=[1,2,3,4,5]
-var array3=[1,3,3,3,2,2,5,5,5,5,5,4,4,4,4,4,4,4,4]
-
 const suma=(arrayE)=>{
+    console.log(arrayE)
     if(arrayE.length>0){
-        return arrayE.reduce((num,acc)=>acc+=num)
+        var suma=0
+        for(let i=0;i<arrayE.length;i++){
+            suma+=arrayE[i]
+        }
+        return suma
     } else{
         return 0
     }
 }
 const reverse=(arrayE)=>{
-    return arrayE.reverse()
+    newArrayReversed=[]
+    for(let i=arrayE.length-1;i==0;i--){
+        newArrayReversed.push(arrayE[i])
+    }
+    return newArrayReversed
 }
 const rotaciones = (arrayE, n) => {
     var x=0
@@ -24,20 +29,31 @@ const rotaciones = (arrayE, n) => {
     }
     return arrayE
 }
+
+const filtro=(array)=>{
+    //si hay elementos en el array
+    if(array.length>0){
+        const dataArr = new Set(array);
+        return [...dataArr];
+    }else{
+        return []
+    }
+}
+
 const mesetaMasLarga=(arrayE)=>{
     if(arrayE.length>0){
         //Filtro para saber cuales son los elementos
-        const arrayElementsFiltered=arrayE.filter((element,i)=>arrayE.indexOf(element)===i)
+        const arrayElementsFiltered=filtro(arrayE)
         const arrayContElements=[]
-        arrayElementsFiltered.map(element=>{
+        for(let i=0;i<arrayElementsFiltered.length;i++){
             var cont=0
-            for(var i=0;i<arrayE.length;i++){
-                if(element===arrayE[i]){
+            for(let j=0;j<arrayE.length;j++){
+                if(arrayElementsFiltered[i]===arrayE[j]){
                     cont++
                 }
             }
             arrayContElements.push(cont)
-        })
+        }
         //Evaluo el maximo del arreglo resultante del conteo y lo retorno
         return Math.max(...arrayContElements)
     }else{
