@@ -1,62 +1,41 @@
 const suma=(arrayE)=>{
-    if(arrayE.length>0){
-        var suma=0
-        for(let i=0;i<arrayE.length;i++){
-            suma+=arrayE[i]
-        }
-        return suma
-    } else{
-        return 0
+    let suma=0
+    for(let i=0;i<arrayE.length;i++){
+        suma+=arrayE[i]
     }
+    return suma
 }
 const reverse=(arrayE)=>{
-    newArrayReversed=[]
+    let newArrayReversed=[]
     for(let i=arrayE.length-1;i>=0;i--){
         newArrayReversed.push(arrayE[i])
     }
     return newArrayReversed
 }
 const rotaciones = (arrayE, n) => {
-    var x=0
-    while(x<n){
-        const aux=arrayE[0]
-        for(var i=0;i<arrayE.length-1;i++){
-            arrayE[i]=arrayE[i+1]
+    if(arrayE.length){
+        for(let i=0;i<n;i++){
+            let aux=arrayE[0]
+            for(let j=0;j<arrayE.length-1;j++){
+                arrayE[j]=arrayE[j+1]
+            }
+            arrayE[(arrayE.length-1)]=aux
         }
-        arrayE[(arrayE.length-1)]=aux
-        x++
     }
     return arrayE
 }
 
-const filtro=(array)=>{
-    //si hay elementos en el array
-    if(array.length>0){
-        const dataArr = new Set(array);
-        return [...dataArr];
-    }else{
-        return []
-    }
-}
-
 const mesetaMasLarga=(arrayE)=>{
-    if(arrayE.length>0){
-        //Filtro para saber cuales son los elementos
-        const arrayElementsFiltered=filtro(arrayE)
-        const arrayContElements=[]
-        for(let i=0;i<arrayElementsFiltered.length;i++){
-            var cont=0
-            for(let j=0;j<arrayE.length;j++){
-                if(arrayElementsFiltered[i]===arrayE[j]){
-                    cont++
-                }
-            }
-            arrayContElements.push(cont)
+    let mesetaMasLarga=0
+    let cont=1
+    for(let i=0;i<arrayE.length;i++){
+        if(arrayE[i]!==arrayE[i+1]){
+            if(mesetaMasLarga<cont)mesetaMasLarga=cont
+            cont=1
+        }else {
+            cont++ 
         }
-        //Evaluo el maximo del arreglo resultante del conteo y lo retorno
-        return Math.max(...arrayContElements)
-    }else{
-        return 0
     }
+    return mesetaMasLarga
 }
 test_ejercicio1(suma, reverse, mesetaMasLarga, rotaciones)
