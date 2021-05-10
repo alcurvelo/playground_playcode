@@ -39,7 +39,6 @@ const inverso = (cadena) => {
     return newCadenaInversa;
 }
 const compruebaCadenasIguales=(cadenaBase,cadenaComprueba)=>{
-    console.log(cadenaBase,cadenaComprueba)
     if(cadenaBase.length===cadenaComprueba.length){
         for(let i=0;i<cadenaComprueba.length;i++){
             if(cadenaBase[i].charAt()!==cadenaComprueba[i].charAt()){
