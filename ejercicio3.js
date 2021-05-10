@@ -1,36 +1,13 @@
-const metodoDeLaBurbujaMayorMenor=(array)=>{
-    for(let i=0;i<array.length;i++){
-        for(let j=0;j<array.length-i-1;j++){
-            if(array[j]<array[j+1]){
-                var aux=array[j+1]
-                array[j+1]=array[j]
-                array[j]=aux
-            }
-        }
-    }
-    return array
-}
 const maximo = (matriz) =>{
-    const arrayMayores=[]
-    //recorriendo la matriz
+  if(matriz.length>0&&matriz[0].length>0){
+    let mayorDeTodos=0
     for(let i=0;i<matriz.length;i++){
-        //Si el arreglo de la matriz no esta vacio
-        if(matriz[i].length>0){
-            //Uso el metodo de la burbuja para ordenar cada array de mayor a menor
-            matriz[i]=metodoDeLaBurbujaMayorMenor(matriz[i])
-        }else{
-            //Si esta vacia la matriz retorna -1
-            return -1
-        }
-        //Ya ordenada la matriz uso un array para guardar solo los mayores de cada array
-        if(matriz.length-1===i){
-            for(x=0;x<matriz.length;x++){
-                arrayMayores.push(matriz[x][0])
-            }
-        }
+      for(let j=0;j<matriz[i].length;j++){
+        if(mayorDeTodos<matriz[i][j]) mayorDeTodos=matriz[i][j]
+      }
     }
-    //retorno el numero mayor luego de ordenar la matriz de los mayores
-    return metodoDeLaBurbujaMayorMenor(arrayMayores)[0]
+    return mayorDeTodos
+  }else return -1
 }
 const multiplicarMatrices = (matriz1, matriz2) => {
   filasM1 = matriz1.length;
@@ -38,17 +15,14 @@ const multiplicarMatrices = (matriz1, matriz2) => {
   filasM2 = matriz2.length;
   columnM2 = matriz2[0].length;
   let resultMultiplicacion = new Array(filasM1);
-  if (columnM1 != filasM2){
-    console.log("Estas matrices no pueden calcularse.")
-  }else{
-    for (i=0; i<resultMultiplicacion.length;i++){
-      resultMultiplicacion[i] = new Array(columnM2).fill(0);
-    }
-    for (i=0;i<resultMultiplicacion.length;i++) {
-      for (j=0;j<resultMultiplicacion[i].length;j++) {                                
-        for (k=0; k<columnM1; k++) {
-          resultMultiplicacion [i][j] = resultMultiplicacion [i][j] + matriz1[i][k]*matriz2[k][j]; 
-        }
+  if (columnM1 != filasM2)return console.log("Estas matricez no se pueden calcular.")   
+  for (i=0; i<resultMultiplicacion.length;i++){
+    resultMultiplicacion[i] = new Array(columnM2).fill(0);
+  }
+  for (i=0;i<resultMultiplicacion.length;i++) {
+    for (j=0;j<resultMultiplicacion[i].length;j++) {                                
+      for (k=0; k<columnM1; k++) {
+        resultMultiplicacion [i][j] +=matriz1[i][k]*matriz2[k][j]; 
       }
     }
   }
@@ -63,7 +37,7 @@ const valoresArrayIguales=(array)=>{
   return true
 }
 const guardandoDiagonal=(matriz)=>{
-    var arrayResult=[]
+    let arrayResult=[]
     for(let i=0;i<matriz.length;i++){
         for(let j=0;j<matriz[0].length;j++){
             if(i===j){
@@ -90,13 +64,13 @@ const esDegrade = (mEntrada) => {
     return true;
   }else{
     //Guardo la diagonal en una variable
-    var arrayDiagonal=guardandoDiagonal(mEntrada)
+    let arrayDiagonal=guardandoDiagonal(mEntrada)
     //Evaluo si son iguales
     if(valoresArrayIguales(arrayDiagonal)){
       //Si el array esta en vertical (1 columna varias filas)
       if(arrayDiagonal.length===1&&mEntrada.length>1){
         //1 columna varias filas
-        var horizontal=[]
+        let horizontal=[]
         for(let i=0;i<mEntrada.length;i++){
           horizontal.push(mEntrada[i][0])
         }
@@ -105,7 +79,7 @@ const esDegrade = (mEntrada) => {
       //Si son iguales, evaluo si cada array esta ordenado de menor a mayor y comparo con la copia
       for(let i=0;i<mEntrada.length;i++){
         //copiando el array
-        var arrayAux=[]
+        let arrayAux=[]
         for(let x=0;x<mEntrada[i].length;x++){
           arrayAux[x]=mEntrada[i][x]
         }
@@ -124,65 +98,38 @@ const esDegrade = (mEntrada) => {
     }
   }
 }
-const soloCeroUno=(M)=>{
+const validacionDeSoloCerosYUnos=(M)=>{
   for(let i=0;i<M.length;i++){
     for(let j=0;j<M[i].length;j++){
-      if(M[i][j]!==0){
-        if(M[i][j]!==1){
+      if(M[i][j]!==0&&M[i][j]!==1){
           return false
-        }
       }
     }
   }
   return true
 }
-
-const comprobarIteracionTablero=(M)=>{
-  var aux=M[0][0]
-  for(let i=0;i<M.length;i++){
-    for(let j=0;j<M[i].length;j++){
-      //En la primera vuelta comprueba que siga el patron de iteracion tomando el aux como inicio
-      //Si encuentra algún patron distinto a la iteracion del tablero retorna false.
-      //Si llega al final de la iteracion devuelve true
-      if(M[i][j]===aux){
-        if(M[i].length-1===j){
-          if(M.length-1===i){
-            return true
-          }else{
-            if(aux!==M[i+1][0]){
-              //¿Es regular?
-              if(M.length===M[0].length){
-                aux=M[i+1][0]
-              }else{
-                return false
-              }
-            }else{
-              aux=M[i+1][0]
-            }
-          }
-        }else{
-          aux=M[i][j+1]
-        }
-      }else{
-        return false
-      }
-    }
+const compruebaAlternado=(array)=>{
+  for (let i=0;i<array.length-1;i++){
+    if(array[i+1]===array[i]) return false
   }
+  return true
 }
 const esDamero = (M) => {
-  if(soloCeroUno(M)){
-    if(M[0].length>0){
-      if(comprobarIteracionTablero(M)){
-        return true
-      }else{
-        return false
-      }
-    }else{
-      return false
+  //Sí está vacio retorna false
+  if((M.length>0&&M[0].length>0)&&validacionDeSoloCerosYUnos(M)){
+    //Guardando la primera columna mientras compruebo alternado de las filas
+    let arrayPrimeraColumna=[]
+    for(let i=0;i<M.length;i++){
+      if(compruebaAlternado(M[i])){
+        arrayPrimeraColumna.push(M[i][0])
+      }else return false
     }
-  }else{
+    //Si llega a este punto, es por que todas las filas estan alternadas
+    //Finalmente, compruebo si la primera columna tambien esta alternada
+    if(compruebaAlternado(arrayPrimeraColumna))return true
     return false
   }
+  return false
 }
 
 const esDameroRegular = (M) => {
