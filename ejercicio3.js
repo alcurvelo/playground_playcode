@@ -133,15 +133,10 @@ const esDamero = (M) => {
 }
 
 const esDameroRegular = (M) => {
-  if(M.length===M[0].length){
-    if(esDamero(M)){
-      return true
-    }else{
-      return false  
-    }
-  }else{
-    return false
+  if(M.length===M[0].length&&esDamero(M)){
+    return true
   }
+  return false  
 }
 
 test_ejercicio3(maximo, multiplicarMatrices, esDegrade, esDamero, esDameroRegular);
