@@ -27,6 +27,7 @@ const rotaciones = (arrayE, n) => {
 
 const mesetaMasLarga=(arrayE)=>{
     let mesetaMasLarga=0
+    if(!arrayE||!arrayE.length)return mesetaMasLarga
     let cont=1
     for(let i=0;i<arrayE.length;i++){
         if(arrayE[i]!==arrayE[i+1]){

@@ -1,13 +1,10 @@
 //Funciones
 const f1 = (arrayE) => {
-    if(arrayE.length>0){
-        for(let i=0;i<arrayE.length;i++){
-            arrayE[i]=Math.floor(arrayE[i]/2)
-        }
-        return arrayE
-    }else{
-        return []
+    if(!arrayE||!arrayE.length)return arrayE
+    for(let i=0;i<arrayE.length;i++){
+        arrayE[i]=Math.floor(arrayE[i]/2)
     }
+    return arrayE
 }
 const f2 = (arrayE, func) => {
     for(let i=0;i<arrayE.length;i++){
