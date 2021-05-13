@@ -168,3 +168,57 @@ input[type=checkbox]{
     min-width: 200px;
     height: 40px;
 }
+/*Semaforo*/
+.semaforoSection{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 2vw;
+}
+.boxSemaforos{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.semaforo{
+    margin: 1vw 2.5vw;
+    width: 80px;
+    background-color: rgb(121, 156, 7);
+    border-radius:2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2vw;
+    border:1vw inset rgb(121, 156, 7)
+}
+.foco{
+    margin: 1vw 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50vw;
+}
+.verde{
+    background-color: green;
+    transition: 1s linear;
+    transform: scale(1.125);
+}
+.amarillo{
+    background-color: yellow;
+    transition: 1s linear;
+    transform: scale(1.125);
+}
+.rojo{
+    background-color: red;
+    transition: 1s linear;
+    transform: scale(1.125);
+}
+.gris{
+    background-color: grey;
+    transition: .5s linear;
+    transform: scale(1);
+}
