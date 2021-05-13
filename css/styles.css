@@ -146,12 +146,12 @@ input[type=checkbox]{
     border-radius: 2vw;
     border: 3px inset rgb(1, 97, 1);
 }
-.bCalcular:hover,.bPagarFacturas:hover{
+.bCalcular:hover,.bPagarFacturas:hover,.bCantidadPromesas:hover{
     cursor: pointer;
     background-color: rgb(0, 92, 0);
     transition: .5 linear;
 }
-.bCalcular:active,.bPagarFacturas:active{
+.bCalcular:active,.bPagarFacturas:active,.bCantidadPromesas:active{
     cursor: pointer;
     background-color: rgb(0, 66, 0);
 }
@@ -169,9 +169,47 @@ input[type=checkbox]{
     height: 40px;
 }
 /*Semaforo*/
-.semaforoSection{
+body{
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.info,.encabezado{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.encabezado label{
+    font-size: 22px;
+    font-weight: bold;
+}
+.encabezado input{
+    height: 30px;
+    max-width: 50px;
+    border-radius: .5vw;
+    font-size: 16px;
+}
+.bCantidadPromesas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    text-align: center;
+    min-width: 200px;
+    height: 40px;
+    border-radius: 1vw;
+    background-color: lightgreen;
+    border: 3px inset rgb(1, 97, 1);
+}
+.info h2 span{
+    color: greenyellow;
+}
+.semaforoSection{
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -185,21 +223,20 @@ input[type=checkbox]{
     align-items: center;
 }
 .semaforo{
-    margin: 1vw 2.5vw;
-    width: 80px;
+    width: 120px;
+    min-height: 300px;
     background-color: rgb(121, 156, 7);
     border-radius:2vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 2vw;
     border:1vw inset rgb(121, 156, 7)
 }
 .foco{
     margin: 1vw 0;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50vw;
 }
 .verde{
