@@ -44,7 +44,7 @@ const procesosAEsperar=(element)=>{
     }
 }
 const procesoPorElemento=(element)=>{
-    return reiniciaSemaforo()
+    reiniciaSemaforo()
     .then(reinicio=>{
         document.getElementById('numeroPromesa').innerHTML=element+1
         console.log(reinicio+element)
