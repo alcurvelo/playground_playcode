@@ -1,14 +1,15 @@
 let boxSemaforos=document.querySelector('.boxSemaforos')
 const lanzarPromesa=(numeroDePromesa)=>{
     return new Promise((resolve, reject) => {
-        //A fines vizuales coloque el timeout para el color amarillo
+        //A fines visuales coloque el timeout para el color amarillo
         setTimeout(()=>{
         console.log(`Promesa del semaforo ${numeroDePromesa} en proceso`)
         cambiarLuz('luzAmarilla')
             setTimeout(()=>{
                 resolve("Promesa numero: " + numeroDePromesa + " resuelta");
-            },1000)
+            },Math.random()*100)
         }, 2000);
+        //El tiempo de 2000 esta colocado para que se vea el cambio de colores.
     })
 }
 const cambiarLuz=(focoLuz)=>{
@@ -21,24 +22,34 @@ const reiniciaSemaforo=()=>{
         setTimeout(()=>{
             luces.map(luz=>document.getElementById(luz).classList.add('gris'))
             resolve("Se inicia el semaforo numero: ")
-        },1000)
+        },1500)
+        //El tiempo 1500 esta colocado para que se vean el cambio de colores.
     })
 }
-const semaforo=async(cantDePromesas)=>{
-    for(let i=0;i<cantDePromesas;i++){
-        //Una promesa para reiniciar el semaforo
-        await reiniciaSemaforo()
-        .then(async reinicio=>{
-            document.getElementById('numeroPromesa').innerHTML=i+1
-            console.log(reinicio+i)
-            cambiarLuz('luzVerde')
-            await lanzarPromesa(i)
-            .then(resolve=>{
-                cambiarLuz('luzRoja')
-                console.log(resolve+'\n/////////////////////////////////////////')
-            })
+const procesoPorElemento=(cola)=>{
+    if(cola.length){
+    reiniciaSemaforo()
+    .then(reinicio=>{
+        document.getElementById('numeroPromesa').innerHTML=cola[0]+1
+        console.log(reinicio+cola[0])
+        cambiarLuz('luzVerde')
+        lanzarPromesa(cola[0])
+        .then(resolve=>{
+            cambiarLuz('luzRoja')
+            console.log(resolve+'\n/////////////////////////////////////////')
+            cola.shift()
+            procesoPorElemento(cola)
         })
+    })}
+}
+const semaforo=(cantDePromesas)=>{
+    //Guandando en un array
+    let cola=[]
+    for(let i=0;i<cantDePromesas;i++){
+        cola.push(i)
+        console.log(cola)
     }
+    procesoPorElemento(cola)
 }
 document.querySelector('.bCantidadPromesas').addEventListener('click', function(e){
     e.preventDefault();
@@ -49,13 +60,3 @@ document.querySelector('.bCantidadPromesas').addEventListener('click', function(
         alert("Solo se admiten números mayores a 0.")
     }
 })
-  /*lanzarProcesos(7).forEach((promesa) => {
-    promesa.then((mensaje) => {
-      console.log(mensaje);
-    })
-  });*/
-  // proceso = function(resolve, numero ) {
-  //   setTimeout(function() {
-  //     resolve(numero)
-  //   }, Math.random()*100)
-  // }
