@@ -1,15 +1,18 @@
+let ocupado=false
+let procesosEnEspera=[]
 let boxSemaforos=document.querySelector('.boxSemaforos')
 const lanzarPromesa=(numeroDePromesa)=>{
     return new Promise((resolve, reject) => {
         //A fines visuales coloque el timeout para el color amarillo
         setTimeout(()=>{
-        console.log(`Promesa del semaforo ${numeroDePromesa} en proceso`)
-        cambiarLuz('luzAmarilla')
-            setTimeout(()=>{
-                resolve("Promesa numero: " + numeroDePromesa + " resuelta");
-            },Math.random()*100)
-        }, 2000);
-        //El tiempo de 2000 esta colocado para que se vea el cambio de colores.
+            let time=Math.random()*100
+            console.log(`Promesa del semaforo ${numeroDePromesa} en proceso`)
+            cambiarLuz('luzAmarilla')
+                setTimeout(()=>{
+                    resolve("Promesa numero: " + numeroDePromesa + " resuelta con el tiempo random: "+time);
+                },time)
+        }, 0);
+        //El tiempo deberia estar en 1000 o más para que se vean el cambio de colores.
     })
 }
 const cambiarLuz=(focoLuz)=>{
@@ -22,25 +25,38 @@ const reiniciaSemaforo=()=>{
         setTimeout(()=>{
             luces.map(luz=>document.getElementById(luz).classList.add('gris'))
             resolve("Se inicia el semaforo numero: ")
-        },1500)
-        //El tiempo 1500 esta colocado para que se vean el cambio de colores.
+        }, 0)
+        //El tiempo deberia estar en 1000 o más para que se vean el cambio de colores.
     })
 }
-const procesoPorElemento=(cola)=>{
-    if(cola.length){
-    reiniciaSemaforo()
+const noOcupado=(element)=>{
+    if(!ocupado){
+        ocupado=true
+        procesoPorElemento(element)
+    }
+    else procesosAEsperar(element)
+}
+const procesosAEsperar=(element)=>{
+    if(element==='signal'&&procesosEnEspera.length){
+        noOcupado(procesosEnEspera.shift())
+    }else if(element!=='signal'){
+        procesosEnEspera.push(element)
+    }
+}
+const procesoPorElemento=(element)=>{
+    return reiniciaSemaforo()
     .then(reinicio=>{
-        document.getElementById('numeroPromesa').innerHTML=cola[0]+1
-        console.log(reinicio+cola[0])
+        document.getElementById('numeroPromesa').innerHTML=element+1
+        console.log(reinicio+element)
         cambiarLuz('luzVerde')
-        lanzarPromesa(cola[0])
+        lanzarPromesa(element)
         .then(resolve=>{
             cambiarLuz('luzRoja')
             console.log(resolve+'\n/////////////////////////////////////////')
-            cola.shift()
-            procesoPorElemento(cola)
+            ocupado=false
+            procesosAEsperar('signal')
         })
-    })}
+    })
 }
 const semaforo=(cantDePromesas)=>{
     //Guandando en un array
@@ -49,7 +65,9 @@ const semaforo=(cantDePromesas)=>{
         cola.push(i)
         console.log(cola)
     }
-    procesoPorElemento(cola)
+    cola.forEach(element=>{
+        noOcupado(element)
+    })
 }
 document.querySelector('.bCantidadPromesas').addEventListener('click', function(e){
     e.preventDefault();
