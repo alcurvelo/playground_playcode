@@ -239,7 +239,7 @@ body{
     height: 60px;
     border-radius: 50vw;
 }
-.verde{
+.verdeSem{
     background-color: green;
     transition: 1s linear;
     transform: scale(1.125);
@@ -249,7 +249,7 @@ body{
     transition: 1s linear;
     transform: scale(1.125);
 }
-.rojo{
+.rojoSem{
     background-color: red;
     transition: 1s linear;
     transform: scale(1.125);
